@@ -19,16 +19,21 @@
 			<div class="card-body">
 				<div class="form-group my-4">
 					<label for="nomeProduto">Produto</label> 
-					<input th:field="*{nomeProduto}" class="form-control" placeholder="nome do produto" /> 
+					<input th:field="*{nomeProduto}" class="form-control" placeholder="nome do produto" th:errorclass="is-invalid" /> 
 					<small>Informa qual o nome do produto.</small>
+					<div th:errors="*{nomeProduto}" class="invalid-feedback"></div>
 				</div>
 				<div class="form-group my-4">
-					<label for="UrlProduto">URL do Produto</label> <input th:field="*{UrlProduto}" class="form-control" placeholder="URL do produto" /> 
+					<label for="urlProduto">URL do Produto</label> 
+					<input th:field="*{urlProduto}" class="form-control" placeholder="URL do produto" th:errorclass="is-invalid" /> 
 					<small>Procure em um site o produto e cole a url da página aqui.</small>
+					<div th:errors="*{urlProduto}" class="invalid-feedback"></div>
 				</div>
 				<div class="form-group my-4">
-					<label for="urlImagem">Imagem</label> <input th:field="*{UrlImagem}" class="form-control" placeholder="URL da imagem" />
+					<label for="urlImagem">Imagem</label> 
+					<input th:field="*{urlImagem}" class="form-control" placeholder="URL da imagem" th:errorclass="is-invalid" />
 					<small>Copie a url de uma boa imagem do produto e cole aqui para ajudar a conseguir compradores.</small>
+					<div th:errors="*{urlImagem}" class="invalid-feedback"></div>
 				</div>
 				<div class="form-group my-4">
 					<label for="descricao">Descrição</label>
