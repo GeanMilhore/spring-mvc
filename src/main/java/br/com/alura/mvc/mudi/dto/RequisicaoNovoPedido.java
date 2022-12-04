@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class RequisicaoNovoPedido {
 
-	@NotBlank
+	@NotBlank //NotBlank.requisicaoNovoPedido.nomeProduto=não pode estar em branco
 	private String nomeProduto;
 	
 	@NotBlank
