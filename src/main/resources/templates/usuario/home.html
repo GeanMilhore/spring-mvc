@@ -4,10 +4,26 @@
 <body>
 	<div th:replace="~{base :: logo}"></div>
 	<div class="container">
-		<div th:replace="~{base :: titulo('Últimos Pedidos')}"></div>
-		
+		<div th:replace="~{base :: titulo('Meus Pedidos')}"></div>
+		<nav
+			class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+			<div class="navbar-nav">
+				<a th:classappend="${status} == null ? 'active'" th:href="@{/usuario/pedido}" class="nav-itemn nav-link">Todos</a> 
+				<a th:classappend="${status} == 'aguardando' ? 'active'" th:href="@{/usuario/pedido/aguardando}" class="nav-item nav-link">Aguardando</a> 
+				<a th:classappend="${status} == 'aprovado' ? 'active'" th:href="@{/usuario/pedido/aprovado}" class="nav-item nav-link">Aprovado</a> 
+				<a th:classappend="${status} == 'entregue' ? 'active'" th:href="@{/usuario/pedido/entregue}" class="nav-item nav-link">Entregue</a>
+			</div>
+			<a href="/pedido/formulario">
+				<button class="btn btn-outline-secondary">Novo</button>
+			</a>
+		</nav>
+
 		<div class="card mb-3" th:each="pedido : ${pedidos}">
-			<div th:text="${pedido.nome}" class="card-header alert alert-dark"></div>
+		
+			<th:block th:switch="${pedido.status.name()}" >
+			<div th:case="'AGUARDANDO'" th:text="${pedido.nome}" class="card-header alert alert-warning"></div>
+			<div th:case="'APROVADO'" th:text="${pedido.nome}" class="card-header alert alert-success"></div>
+			<div th:case="'ENTREGUE'" th:text="${pedido.nome}" class="card-header alert alert-dark"></div>
 			<div class="card-body">
 				<div class="row">
 					<div class="col-12 col-sm-8 mb-3">
