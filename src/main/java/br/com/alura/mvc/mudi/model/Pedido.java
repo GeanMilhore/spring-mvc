@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pedido {
 
@@ -29,12 +31,14 @@ public class Pedido {
 	private String urlImagem;
 	private String descricao;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY )
 	private List<Oferta> ofertas;
 
@@ -46,6 +50,14 @@ public class Pedido {
 		this.user = user;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
